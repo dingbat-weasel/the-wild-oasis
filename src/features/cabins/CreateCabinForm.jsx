@@ -13,10 +13,6 @@ import FileInput from '../../ui/FileInput';
 import Textarea from '../../ui/Textarea';
 import FormRow from '../../ui/FormRow';
 
-const Label = styled.label`
-  font-weight: 500;
-`;
-
 function CreateCabinForm() {
   // register inputs into this hook, the form we are setting up using this hook
   const { register, handleSubmit, reset, getValues, formState } = useForm();
@@ -37,7 +33,7 @@ function CreateCabinForm() {
   });
 
   function onSubmit(data) {
-    mutate(data);
+    mutate({ ...data, image: data.image[0] });
   }
 
   function onError(errors) {
@@ -115,10 +111,15 @@ function CreateCabinForm() {
         />
       </FormRow>
 
-      {/* <FormRow label='Cabin Photo'>
-        <Label htmlFor='image'>Cabin photo</Label>
-        <FileInput id='image' accept='image/*' />
-      </FormRow> */}
+      <FormRow label='Cabin Photo'>
+        <FileInput
+          id='image'
+          accept='image/*'
+          {...register('image', {
+            required: 'This field is required',
+          })}
+        />
+      </FormRow>
 
       <FormRow>
         {/* type is an HTML attribute! */}
