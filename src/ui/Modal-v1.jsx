@@ -1,4 +1,3 @@
-import { cloneElement, createContext, useContext, useState } from 'react';
 import { createPortal } from 'react-dom';
 import { HiXMark } from 'react-icons/hi2';
 import styled from 'styled-components';
@@ -51,51 +50,35 @@ const Button = styled.button`
     color: var(--color-grey-500);
   }
 `;
-// For note on createPortal, check ./Modal-v1
 
-const ModalContext = createContext();
+// Note on Modals in DOM and React Portals
+// A feature that allows us to render an element outside of the parent component's DOM structure, while still keeping the element in the original position of the component tree
+// With a portal we can render a component in any location that we want in the DOM tree, while keeping it stable in the component tree so that things like props keep working normally
+// Modal windows, tooltips, menus; things we want to display on top of other elements
 
-function Modal({ children }) {
-  const [openName, setOpenName] = useState('');
+// We render the modal as a result of calling createPortal, a react-dom fn
+// the first arg is the JSX we want to render
+// the second arg is the DOM node where we want to render it
 
-  const close = () => setOpenName('');
-  const open = setOpenName;
+// the modal now lives outside the DOM structure while keeping its position within the component tree
+// any dom node can be used, even selected with document.querySelector(), etc.
 
-  return (
-    <ModalContext.Provider value={{ openName, close, open }}>
-      {children}
-    </ModalContext.Provider>
-  );
-}
+// WHY?
+// Avoid conflicts with the css property 'overflow' set to 'hidden'
+// If it is reused somewhere where the overflow hidden would cut it off, guarantees it stays intact stylistically in the future
 
-function Open({ children, opens: opensWindowName }) {
-  const { open } = useContext(ModalContext);
-
-  // To pass open event handler functions to the children we need to use 'cloneElement'
-  // It should not be overused, easy to create pitfalls
-  // Allows us to create a new react element based on another one
-  // cloneElement(element, props)
-  return cloneElement(children, { onClick: () => open(opensWindowName) });
-}
-
-function Window({ children, name }) {
-  const { openName, close } = useContext(ModalContext);
-  if (name !== openName) return null;
-
+function Modal({ children, onClose }) {
   return createPortal(
     <Overlay>
       <StyledModal>
-        <Button onClick={close}>
+        <Button onClick={onClose}>
           <HiXMark />
         </Button>
-        <div>{cloneElement(children, { onCloseModal: close })}</div>
+        <div>{children}</div>
       </StyledModal>
     </Overlay>,
     document.body
   );
 }
-
-Modal.Open = Open;
-Modal.Window = Window;
 
 export default Modal;
