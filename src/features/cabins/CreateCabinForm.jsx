@@ -119,7 +119,7 @@ function CreateCabinForm({ cabinToEdit = {}, onCloseModal }) {
             required: 'This field is required',
             // custom validation
             validate: (value) =>
-              value <= getValues().regularPrice ||
+              value < getValues().regularPrice ||
               'Discount should be less than the regular price',
           })}
         />
