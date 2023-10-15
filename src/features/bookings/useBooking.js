@@ -12,7 +12,7 @@ export function useBooking() {
   } = useQuery({
     // Uniquely identify the data, must be array
     // If another component wants to use the data, this key can be used to read from cache
-    queryKey: ['booking'],
+    queryKey: ['booking', bookingId],
     // Function which is responsible for fetching data from API, must return a promise
     queryFn: () => getBooking(bookingId),
     retry: false,
