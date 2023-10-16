@@ -14,7 +14,7 @@ export function useLogin() {
     onSuccess: (user) => {
       // manually set data in query cache
       queryClient.setQueriesData(['user'], user);
-      navigate('/dashboard');
+      navigate('/dashboard', { replace: true });
     },
 
     onError: (err) => {
