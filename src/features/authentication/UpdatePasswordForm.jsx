@@ -12,6 +12,9 @@ function UpdatePasswordForm() {
 
   const { updateUser, isUpdating } = useUpdateUser();
 
+  // Permanently disabled to ensure continued use of sample account while a portfolio project
+  const isSampleUser = true;
+
   function onSubmit({ password }) {
     updateUser({ password }, { onSuccess: reset });
   }
@@ -26,7 +29,7 @@ function UpdatePasswordForm() {
           type='password'
           id='password'
           autoComplete='current-password'
-          disabled={isUpdating}
+          disabled={isUpdating || isSampleUser}
           {...register('password', {
             required: 'This field is required',
             minLength: {
@@ -45,7 +48,7 @@ function UpdatePasswordForm() {
           type='password'
           autoComplete='new-password'
           id='passwordConfirm'
-          disabled={isUpdating}
+          disabled={isUpdating || isSampleUser}
           {...register('passwordConfirm', {
             required: 'This field is required',
             validate: (value) =>
@@ -54,10 +57,15 @@ function UpdatePasswordForm() {
         />
       </FormRow>
       <FormRow>
-        <Button onClick={reset} type='reset' variation='secondary'>
+        <Button
+          onClick={reset}
+          type='reset'
+          variation='secondary'
+          disabled={isUpdating || isSampleUser}
+        >
           Cancel
         </Button>
-        <Button disabled={isUpdating}>Update password</Button>
+        <Button disabled={isUpdating || isSampleUser}>Update password</Button>
       </FormRow>
     </Form>
   );

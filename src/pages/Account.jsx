@@ -15,6 +15,14 @@ function Account() {
       </Row>
 
       <Row>
+        <Heading as='h4'>
+          <span>
+            <i>
+              Password update disabled to ensure continued use of sample
+              account...
+            </i>
+          </span>
+        </Heading>
         <Heading as='h3'>Update password</Heading>
 
         <UpdatePasswordForm />
