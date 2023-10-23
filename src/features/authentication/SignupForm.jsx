@@ -4,10 +4,12 @@ import Form from '../../ui/Form';
 import FormRow from '../../ui/FormRow';
 import Input from '../../ui/Input';
 import { useSignup } from './useSignup';
+import Heading from '../../ui/Heading';
 
 // Email regex: /\S+@\S+\.\S+/
 
 function SignupForm() {
+  // Sample user disables submit
   const isSampleUser = true;
   const { signup, isLoading } = useSignup();
   const { register, formState, getValues, handleSubmit, reset } = useForm();
