@@ -15,7 +15,6 @@ import { useBooking } from '../bookings/useBooking';
 import { formatCurrency } from '../../utils/helpers';
 import { useCheckin } from './useCheckin';
 import { useSettings } from '../settings/useSettings';
-import { format } from 'date-fns';
 
 const Box = styled.div`
   /* Box */
