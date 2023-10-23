@@ -1,8 +1,6 @@
-# React + Vite
+# The Wild Oasis
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Link to [Live Site](https://the-wild-oasis-izek.vercel.app/)
 
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Description
+This was my final project completed for [The Ultimate React Course 2023: React, Redux & More](https://www.udemy.com/course/the-ultimate-react-course/) on Udemy. It is an administrative portal for a luxury cabin retreat. It features a simple and clear UI demonstrating cabins available, bookings made by guests, as well as a dashboard displaying analytics and check in/out features. Sample user login is available on the login page, feel free to explore the options available. It utilizes React Query, Context API, Styled Components, and react-router as well as a backend using Supabase.
